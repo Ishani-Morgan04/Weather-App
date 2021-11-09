@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link href="src/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Oswald:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script src="https://kit.fontawesome.com/d4d804a5d0.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </script>
+
+
+    <title>Weather App</title>
+  </head>
+  <style>
+  body {
+  font-family: "Oswald", sans-serif;
+  margin: 0 auto;
+  background: radial-gradient(#0072b6, #050141);
+  color: white;
+}
+
+h1 {
+  font-size: 32px;
+  color: white;
+  text-align: center;
+  margin-right: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 30px;
+  padding-left: 50px;
+}
+
+.search-form {
+  margin-top: -10px;
+  margin-left: 120px;
+  margin-right: 120px;
+  outline-color: black;
+}
+
+.search-input {
+  margin: 0 auto;
+}
+
+.form-control {
+  text-align: left;
+  border-radius: 14px;
+  padding-right: -5px;
+}
+
+.btn-primary {
+  text-align: center;
+  background: radial-gradient(#3fdbf0, #9198e5);
+  border-width: 3px;
+  border-color: rgb(0, 20, 68);
+  margin-left: -20px;
+}
+
+.current-button {
+  text-align: center;
+  background: radial-gradient(#3fdbf0, #9198e5);
+  border-width: 3px;
+  border-color: rgb(0, 20, 68);
+  border-radius: 14px;
+  padding: 5px 32px;
+  margin-left: -18px;
+}
+
+.current-forecast {
+  text-align: center;
+  padding-right: 50px;
+  padding-left: 10px;
+  margin-top: -20px;
+}
+
+.now-date {
+  font-size: 12px;
+}
+
+.current-date {
+  font-size: 25px;
+  margin-top: 20px;
+}
+
+.now-city {
+  font-size: 35px;
+  text-transform: uppercase;
+}
+
+.today {
+  max-width: 30%;
+  display: block;
+  margin: 0 auto;
+  margin-top: -10px;
+  padding-right: 50px;
+  padding-left: 8px;
+}
+.temp-description {
+  font-size: 20px;
+  margin: 0 auto;
+  text-align: center;
+  padding-right: 50px;
+  padding-left: 10px;
+}
+
+.quote {
+  font-size: 20px;
+  font-style: bold;
+}
+
+.card {
+  max-width: 400px;
+  max-height: 200px;
+  border-radius: 35px;
+  text-align: center;
+  background: radial-gradient(#3fdbf0, #9198e5);
+  border-width: 4px;
+  border-color: rgb(0, 20, 68);
+}
+
+.row {
+  margin: 0 auto;
+  margin-left: 90px;
+  margin-right: -40px;
+}
+
+p {
+  text-align: center;
+}
+  </style>
+  <body>
+    <div class="container">
+      <h1>
+        WEATHER LENS
+        <hr />
+      </h1>
+      <form class="search-form" id="cityForm">
+          <div class="row">
+            <div class="col-10">        
+            <input 
+            type="search" 
+            id="searchInput" 
+            autofocus="on"
+            autocomplete="off"
+            class="form-control shadow-sm" 
+            placeholder=" Search Current City" />
+  </div>
+  <div class="col-2">
+    <input
+    id="search" 
+    type="submit" 
+    value="Search" 
+    class="form-control btn-primary"/>
+    
+    <button class="current-button" id="current-button"> Current City </button>
+</div>   
+    </div>
+<br />
+
+  <div class="current-forecast" >
+  <br />  
+      <span class="current-date" id="currentDate"> 
+      <strong>FRIDAY, 22 OCTOBER 2021</strong><br>16:34
+      </span>
+  <br />
+      <span class="now-city" id="nowCity"><p><strong>KUALA LUMPUR<strong</p>
+      </span>
+    </div>
+  <br />
+    <img class="today" 
+ <br />
+ <div class="temp-description" >
+   <strong></strong>
+   <br />
+  <span class="current-temperature" id="currentTemperature"><strong> 25 </strong></span>
+   <br /> 
+   <span class="unitsDegree">
+    <a href="#" id="celciusTemp"> °C </a> 
+      | 
+    <a href="#" id="fahrenheitTemp"> °F </a>
+  </span>  
+<br />
+<br />
+  <span class="quote">"I've got a sunshine on a cloudy day".
+  </span>
+<br /> 
+<br />
+</div>
+<br />
+<div class="5-days-forecast">
+  <div class="row">
+  <div class="col-sm-2">
+  <div class="card">   
+  <div class="card-body">
+  <span class="forecast"><strong>SUN</strong><br>⛈<br><strong>Stormy</strong><br>15°C</span>  
+  </div>
+</div>
+</div>
+
+   <div class="col-sm-2">
+   <div class="card">
+   <div class="card-body">
+    <span class="forecast"><strong>MON</strong><br>☀️<br><strong>Sunny</strong><br>40°C</span> 
+   </div>
+</div>
+</div>
+ 
+    <div class="col-sm-2">
+    <div class="card">
+    <div class="card-body">
+      <span class="forecast"><strong>TUE</strong><br>💨<br><strong>Windy</strong><br>18°C</span>     
+    </div>
+ </div>
+ </div>
+      
+    <div class="col-sm-2">
+    <div class="card">       
+    <div class="card-body">
+      <span class="forecast"><strong>WED</strong><br>🌧<br><strong>Rainy</strong><br>15°C</span> 
+    </div>
+  </div>
+  </div>
+            
+    <div class="col-sm-2">
+    <div class="card">
+    <div class="card-body">
+      <span class="forecast"><strong>THU</strong><br>⛅️<br><strong>Cloudy</strong><br>20°C</span> 
+    </div>
+  </div>
+  </div>
+</div>  
+</div> 
+<br /> 
+<br /> 
+<p>
+<a
+href="https://github.com/Ishani-Morgan04/Weather-App"
+target="_blank"
+><strong>Open source code</a>
+by Ishani Morgan</strong>
+</p>
+<br />  
+<br />             
+    <script src="src/index.js">
+    //Feature 1
+
+let now = new Date();
+
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+
+let months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "0ctober",
+  "November",
+  "December"
+];
+
+let day = days[now.getDay()];
+let month = months[now.getMonth()];
+let date = now.getDate();
+let hours = now.getHours();
+let minutes = now.getMinutes();
+let year = now.getFullYear();
+
+if (hours < 10) {
+  hours = "0" + hours;
+}
+if (minutes < 10) {
+  minutes = "0" + minutes;
+}
+
+//WEEK 5 HOMEWORK
+
+function displayWeatherCondition(response) {
+  //console.log(response.data);
+  document.querySelector("#nowCity").innerHTML = response.data.name;
+  //console.log(response.data.name);
+  document.querySelector("#currentTemperature").innerHTML = Math.round(
+    response.data.main.temp
+  );
+}
+function search(nowCity) {
+  let apiKey = "9fff992f31953220b9b904c14ec2ac31";
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${nowCity}&units=metric&appid=${apiKey}`;
+
+  axios.get(apiURL).then(displayWeatherCondition);
+}
+function handleSubmit(event) {
+  event.preventDefault();
+  let nowCity = document.querySelector("#searchInput").value;
+  search(nowCity);
+}
+
+function searchLocation(position) {
+  let apiKey = "9fff992f31953220b9b904c14ec2ac31";
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=${apiKey}`;
+
+  axios.get(apiURL).then(displayWeatherCondition);
+}
+function getCurrentPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
+function updateCelcius(event) {
+  event.preventDefault();
+  let unitsDegree = document.querySelector("#currentTemperature");
+  unitsDegree.innerHTML = 25;
+}
+let celcius = document.querySelector("#celciusTemp");
+celcius.addEventListener("click", updateCelcius);
+
+function updateFahrenheit(event) {
+  event.preventDefault();
+  let unitsDegree = document.querySelector("#currentTemperature");
+  unitsDegree.innerHTML = 77;
+}
+let fahrenheit = document.querySelector("#fahrenheitTemp");
+fahrenheit.addEventListener("click", updateFahrenheit);
+
+let currentDate = document.querySelector("#currentDate");
+currentDate.innerHTML = `${day}, ${date} ${month} ${year} <br> ${hours}:${minutes}`;
+
+let searchForm = document.querySelector("#cityForm");
+searchForm.addEventListener("submit", handleSubmit);
+
+let currentCityButton = document.querySelector("#current-button");
+currentCityButton.addEventListener("click", getCurrentPosition);
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </script>
+   
+
+  </body>
+</html>
